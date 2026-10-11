@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-black: #121110;
+  --color-obsidian: #1A1817;
+  --color-obsidian-light: #242220;
+  --color-deep-plum: #2E1E26;
+  --color-oxblood: #7A2837;
+  --color-oxblood-light: #963546;
+  --color-porcelain: #F6F2EC;
+  --color-porcelain-muted: #E5DFD6;
+  --color-antique-silver: #C4BCB5;
+  --color-border-dark: #2E2A28;
+  --color-border-subtle: rgba(196, 188, 181, 0.15);
+
+  --font-serif: 'Bodoni Moda', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base Theme Configuration */
+:root {
+  --bg-primary: #121110;
+  --bg-secondary: #1A1817;
+  --text-primary: #F6F2EC;
+  --text-muted: #C4BCB5;
+  --accent-oxblood: #7A2837;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: #121110;
+  color: #F6F2EC;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Bodoni Moda Editorial Typography */
+h1, h2, h3, .font-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.015em;
+}
+
+/* Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #121110;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E2A28;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7A2837;
+}
+
+/* Image Zoom & Focus */
+.editorial-zoom-frame {
+  overflow: hidden;
+}
+
+.editorial-zoom-frame img {
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s ease;
+}
+
+.editorial-zoom-frame:hover img {
+  transform: scale(1.045);
+}
+
+/* Glass Surfaces */
+.glass-obsidian {
+  background: rgba(26, 24, 23, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(196, 188, 181, 0.15);
+}
+
+/* Editorial Reveal Animations */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImageReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-anim-eyebrow {
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-anim-title {
+  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  opacity: 0;
+}
+
+.hero-anim-copy {
+  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+.hero-anim-cta {
+  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.hero-anim-image {
+  animation: heroImageReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+/* Scroll reveal helper */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
