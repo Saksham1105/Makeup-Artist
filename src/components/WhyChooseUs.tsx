@@ -86,10 +86,12 @@ export const WhyChooseUs: React.FC = () => {
               
               <div className="aspect-[3/4] overflow-hidden bg-[#1A1817] border border-[#C4BCB5]/40 shadow-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=85"
-                  alt="High-fashion Indian bridal makeup portrait illustrating craftsmanship tenets"
-                  className="w-full h-full object-cover filter contrast-[1.04]"
+                  src="/images/portfolio/bridal-regal-alta.webp"
+                  alt="Traditional Indian bride with red alta and polki jewelry illustrating Dimple Khinchi artistry tenets"
+                  className="w-full h-full object-cover filter contrast-[1.03]"
                   loading="lazy"
+                  width={1406}
+                  height={2000}
                 />
               </div>
 

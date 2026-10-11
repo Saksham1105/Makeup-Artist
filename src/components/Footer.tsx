@@ -19,14 +19,30 @@ export const Footer: React.FC = () => {
           
           {/* Brand Wordmark & Vision (6 cols) */}
           <div className="md:col-span-6 space-y-4">
-            <span className="font-serif text-3xl sm:text-4xl tracking-[0.2em] font-normal uppercase text-[#F6F2EC] block">
-              {siteConfig.artistName}
-            </span>
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-full overflow-hidden border border-[#C4BCB5]/30 bg-[#121110] shrink-0 p-0.5 shadow-md">
+                <img
+                  src="/images/branding/logo.png"
+                  alt="Official Dimple Glam Academy Emblem"
+                  className="w-full h-full object-contain rounded-full"
+                  width={48}
+                  height={48}
+                />
+              </div>
+              <div>
+                <span className="font-serif text-2xl sm:text-3xl tracking-[0.18em] font-normal uppercase text-[#F6F2EC] block leading-tight">
+                  {siteConfig.artistName}
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.26em] text-[#C4BCB5]/70 font-light block">
+                  Dimple Glam Academy
+                </span>
+              </div>
+            </div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-[#7A2837] font-semibold">
               Makeup Artist &amp; Beauty Creator
             </p>
             <p className="max-w-md text-xs sm:text-sm text-[#C4BCB5]/75 leading-relaxed font-light">
-              Elevating authentic individual grace across wedding ceremonies, festive milestones, brand campaigns, and masterclass beauty education in Ajmer, Jaipur, and destination locations.
+              Elevating authentic individual grace across wedding ceremonies, festive milestones, brand campaigns, and beauty education in Ajmer, Jaipur, and destination locations.
             </p>
           </div>
 

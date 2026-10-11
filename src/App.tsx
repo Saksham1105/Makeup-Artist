@@ -5,7 +5,7 @@ import { About } from './components/About';
 import { Services } from './components/Services';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { Portfolio } from './components/Portfolio';
-import { InstagramSection } from './components/InstagramSection';
+import { VideoReelsSection } from './components/VideoReelsSection';
 import { BookingContact } from './components/BookingContact';
 import { Footer } from './components/Footer';
 import { WhatsAppModal } from './components/WhatsAppModal';
@@ -70,7 +70,7 @@ export function App() {
         {/* High-Contrast Warm Porcelain Editorial Section */}
         <WhyChooseUs />
         <Portfolio onOpenLightbox={handleOpenLightbox} />
-        <InstagramSection />
+        <VideoReelsSection />
         <BookingContact onOpenBookingWithMessage={handleOpenWithMessage} />
       </main>
 

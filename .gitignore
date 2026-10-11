@@ -42,3 +42,7 @@ Desktop.ini
 walkthrough.md
 coverage/
 .vite/
+
+# Raw media source folder (optimized assets served from public/)
+Content/
+

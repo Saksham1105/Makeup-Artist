@@ -37,7 +37,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onOpenLightbox }) => {
           </p>
 
           <div className="mt-4 inline-block px-3 py-1 bg-[#121110] border border-[#C4BCB5]/20 text-[10px] uppercase tracking-widest text-[#C4BCB5]/70">
-            Portfolio Showcase • Awaiting Dimple's High-Resolution Camera Roll
+            Verified Portfolio • Authentic Editorial Looks &amp; Behind the Scenes
           </div>
         </div>
 
@@ -63,21 +63,25 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onOpenLightbox }) => {
 
         {/* Asymmetric Haute Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredItems.map((item, index) => (
-            <div
-              key={item.id}
-              onClick={() => onOpenLightbox(item, index)}
-              className="group relative cursor-pointer overflow-hidden bg-[#121110] border border-[#C4BCB5]/20 shadow-lg transition-all duration-500 hover:border-[#C4BCB5]/50 hover:shadow-2xl"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onOpenLightbox(item, index);
-                }
-              }}
-              aria-label={`View look: ${item.title}`}
-            >
+          {filteredItems.map((item, index) => {
+            const actualIndex = portfolioData.findIndex((p) => p.id === item.id);
+            const targetIndex = actualIndex !== -1 ? actualIndex : index;
+
+            return (
+              <div
+                key={item.id}
+                onClick={() => onOpenLightbox(item, targetIndex)}
+                className="group relative cursor-pointer overflow-hidden bg-[#121110] border border-[#C4BCB5]/20 shadow-lg transition-all duration-500 hover:border-[#C4BCB5]/50 hover:shadow-2xl"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onOpenLightbox(item, targetIndex);
+                  }
+                }}
+                aria-label={`View look: ${item.title}`}
+              >
               {/* Image Frame */}
               <div className="aspect-[4/5] overflow-hidden editorial-zoom-frame">
                 <img
@@ -115,7 +119,8 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onOpenLightbox }) => {
                 <Eye className="w-3.5 h-3.5" />
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom CTA to Instagram (Phase 3 Mandate: Simple CTA "Follow on Instagram") */}

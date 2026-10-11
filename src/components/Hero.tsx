@@ -96,10 +96,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               <div className="relative aspect-[4/5] overflow-hidden bg-[#1A1817] shadow-2xl border border-[#C4BCB5]/30">
                 {!imgError ? (
                   <img
-                    src="https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&w=1200&q=85"
-                    alt="Indian bridal makeup portrait showcasing ornate jewelry and flawless skin"
-                    className="w-full h-full object-cover object-[center_20%] filter contrast-[1.04] brightness-[0.98] transition-transform duration-700 hover:scale-[1.03]"
+                    src="/images/portfolio/bridal-regal-portrait.webp"
+                    alt="Dimple Khinchi royal Rajasthani bridal makeup portrait showcasing emerald polki choker and bandhani dupatta"
+                    className="w-full h-full object-cover object-[center_18%] filter contrast-[1.03] brightness-[0.98] transition-transform duration-700 hover:scale-[1.03]"
                     loading="eager"
+                    width={1300}
+                    height={2000}
                     onError={() => setImgError(true)}
                   />
                 ) : (
@@ -121,8 +123,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                       Regal Grace &amp; Timeless Radiance
                     </span>
                   </div>
-                  <span className="text-[9px] uppercase tracking-widest text-[#C4BCB5]/60 px-2 py-0.5 bg-[#121110] border border-[#C4BCB5]/15">
-                    Portfolio Sample
+                  <span className="text-[9px] uppercase tracking-widest text-[#7A2837] font-semibold px-2.5 py-0.5 bg-[#121110] border border-[#7A2837]/30">
+                    Signature Look
                   </span>
                 </div>
               </div>

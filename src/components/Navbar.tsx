@@ -89,17 +89,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Clear Brand Wordmark (Without decorative sub-labels) */}
+          {/* Clear Brand Wordmark with Official Academy Insignia */}
           <a
             href="#home"
-            className="group flex items-center focus:outline-none"
-            aria-label="Dimple Khinchi"
+            className="group flex items-center gap-3 focus:outline-none"
+            aria-label="Dimple Khinchi — Dimple Glam Academy"
           >
-            <span className={`font-serif tracking-[0.2em] font-normal uppercase text-[#F6F2EC] transition-all duration-300 group-hover:text-[#C4BCB5] ${
-              isScrolled ? 'text-lg sm:text-xl' : 'text-xl sm:text-2xl'
-            }`}>
-              {siteConfig.artistName}
-            </span>
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-[#C4BCB5]/30 bg-[#121110] shrink-0 p-0.5 group-hover:border-[#7A2837] transition-colors shadow-sm">
+              <img
+                src="/images/branding/logo.png"
+                alt="Dimple Glam Academy Emblem"
+                className="w-full h-full object-contain rounded-full"
+                width={40}
+                height={40}
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className={`font-serif tracking-[0.2em] font-normal uppercase text-[#F6F2EC] transition-all duration-300 group-hover:text-[#C4BCB5] leading-tight ${
+                isScrolled ? 'text-base sm:text-lg' : 'text-lg sm:text-xl'
+              }`}>
+                {siteConfig.artistName}
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.22em] text-[#C4BCB5]/70 font-light">
+                Dimple Glam Academy
+              </span>
+            </div>
           </a>
 
           {/* Desktop Simplified Navigation Links */}
@@ -171,9 +185,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
             <div>
               {/* Drawer Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[#C4BCB5]/15">
-                <span className="font-serif text-lg tracking-[0.2em] uppercase text-[#F6F2EC] block">
-                  {siteConfig.artistName}
-                </span>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full overflow-hidden border border-[#C4BCB5]/30 bg-[#121110] shrink-0 p-0.5">
+                    <img
+                      src="/images/branding/logo.png"
+                      alt="Dimple Glam Academy Emblem"
+                      className="w-full h-full object-contain rounded-full"
+                      width={32}
+                      height={32}
+                    />
+                  </div>
+                  <div>
+                    <span className="font-serif text-base tracking-[0.18em] uppercase text-[#F6F2EC] block leading-tight">
+                      {siteConfig.artistName}
+                    </span>
+                    <span className="text-[8px] uppercase tracking-[0.2em] text-[#C4BCB5]/60 font-light block">
+                      Dimple Glam Academy
+                    </span>
+                  </div>
+                </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 text-[#C4BCB5] hover:text-[#F6F2EC]"

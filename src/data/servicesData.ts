@@ -14,81 +14,81 @@ export const servicesData: ServiceItem[] = [
   {
     id: 'bridal',
     number: '01',
-    title: 'Bridal Artistry Ceremony',
-    category: 'Traditional & Modern Brides',
-    description: 'A transformative, high-definition bridal experience sculpted around your ceremony tone, attire craftsmanship, and personal facial architecture. Tailored to withstand sacred ceremony hours and tearful moments under bright stage and studio lights.',
+    title: 'Bridal Ceremony Artistry',
+    category: 'Ceremonial & Nuptial Looks',
+    description: 'High-definition bridal makeup sculpted for traditional and contemporary brides. Calibrated to withstand sacred rituals, extended celebration hours, and high-intensity stage and natural lighting.',
     inclusions: [
-      'Tailored HD & Long-Wear Complexion Calibration',
-      'Ceremony Hair Artistry & Traditional Floral Setting',
-      'Dupatta, Saree & Traditional Jewelry Placement',
-      'Pre-Ceremony Skin Preparation & Emergency Touchup Guide'
+      'HD & Long-Wear Complexion Calibration',
+      'Ceremony Hair Artistry & Floral Setting',
+      'Dupatta, Saree & Jewelry Placement',
+      'Skin Preparation for Lasting Radiance'
     ],
-    kitFocus: 'Professional Long-Wear & Camera-Ready Formulations • Tailored to Indian Skin Undertones',
-    imageUrl: 'https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&w=1200&q=85',
-    imageAlt: 'Indian bride in royal bridal attire with ornate jewelry and bespoke bridal makeup'
+    kitFocus: 'Camera-Ready & Long-Wear Formulations • Tailored to Indian Skin Undertones',
+    imageUrl: '/images/portfolio/bridal-closed-eyes.webp',
+    imageAlt: 'Detailed bridal makeup portrait highlighting intricate eye makeup and jewelry'
   },
   {
     id: 'engagement',
     number: '02',
     title: 'Engagement & Sangeet Radiance',
     category: 'Pre-Wedding Celebrations',
-    description: 'Luminous, camera-calibrated party aesthetics tailored for cocktail evenings, high-energy sangeet celebrations, and ring ceremonies. Radiant skin finishes accented with defined contour and sculpted eyes.',
+    description: 'Luminous, camera-calibrated glam crafted for ring ceremonies, sangeet celebrations, and cocktail evenings. Features radiant skin finishes accented with defined contour and sculpted lids.',
     inclusions: [
-      'Sweat-Resistant Luminous Skin Preparation',
-      'Modern Textured Waves or Sculpted Updo Styling',
-      'High-Definition Lash & Lid Dimension Artistry',
-      'Outfit Drape & Silhouette Perfection'
+      'Luminous Skin Preparation',
+      'Textured Waves or Sculpted Updo Styling',
+      'Lash & Eye Dimension Artistry',
+      'Dupatta & Outfit Drape Setting'
     ],
     kitFocus: 'Illuminating & High-Definition Evening Formulations',
-    imageUrl: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=1200&q=85',
-    imageAlt: 'Contemporary glamorous engagement makeup with golden highlights and winged eye'
+    imageUrl: '/images/portfolio/contemporary-veil.webp',
+    imageAlt: 'Contemporary bride with veil and crystal corset showcasing radiant glam'
   },
   {
     id: 'party',
     number: '03',
     title: 'Party & Festive Glam',
-    category: 'Special Occasions',
-    description: 'Sophisticated beauty for wedding guests, gala attendees, family milestones, and festive celebrations in Rajasthan. Lightweight, breathable coverage that enhances natural beauty without feeling masked or heavy.',
+    category: 'Occasion Artistry',
+    description: 'Sophisticated beauty for family celebrations, wedding guests, and festive gatherings across Rajasthan. Breathable, radiant coverage that enhances natural facial features.',
     inclusions: [
-      'Radiant Velvet Complexion Finish',
-      'Statement Lip or Soft Kohl Smokey Eye Accent',
-      'Effortless Blowout or Classic Bun Styling',
-      'Saree / Dupatta Pinning & Final Touches'
+      'Velvet & Glowing Complexion Finish',
+      'Winged Liner, Kohl, or Crystal Accents',
+      'Classic Hair Styling & Setting',
+      'Saree & Dupatta Pinning'
     ],
     kitFocus: 'Lightweight Breathable & Camera-Ready Bases',
-    imageUrl: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1200&q=85',
-    imageAlt: 'Festive occasion makeup with defined kohl eyes and warm nude lips'
+    imageUrl: '/images/portfolio/festive-crystal-glam.webp',
+    imageAlt: 'Festive party makeup with embellished attire and crystal winged eyeliner'
   },
   {
     id: 'editorial',
     number: '04',
-    title: 'Editorial & Brand Shoots',
-    category: 'Campaign & Commercial',
-    description: 'Precision makeup calibrated for fashion shoots, commercial lookbooks, and brand campaigns. Grounded in Dimple’s active experience in front of and behind the camera in Ajmer and Jaipur.',
+    title: 'Editorial & Destination Shoots',
+    category: 'Campaign & Outdoor Production',
+    description: 'Precision makeup for fashion lookbooks, destination celebrations, and creative photoshoots. Designed to perform under direct outdoor sunlight, studio strobes, and 4K digital cameras.',
     inclusions: [
-      'Studio Strobe & 4K Camera Calibrated Makeup',
-      'Editorial Concept Collaboration & Precision Brow Sculpting',
-      'On-Set Touchup & Multi-Look Transition Support',
-      'Creative Lighting & Color Harmony'
+      'Studio Strobe & Daylight Balanced Makeup',
+      'Editorial Concept & Brow Sculpting',
+      'Hair Styling with Floral Parandi & Traditional Accents',
+      'On-Location Durability Calibration'
     ],
-    kitFocus: 'High-Definition Studio & Strobe-Calibrated Formulations',
-    imageUrl: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1200&q=85',
-    imageAlt: 'High-fashion editorial model with pristine sculpted makeup'
+    kitFocus: 'Studio Strobe & High-Definition Formulations',
+    imageUrl: '/images/portfolio/bridal-outdoor-columns.webp',
+    imageAlt: 'Outdoor destination bridal photoshoot with traditional crimson lehenga and pillars'
   },
   {
     id: 'academy',
     number: '05',
-    title: 'Masterclasses & Workshops',
-    category: 'Dimple Glam Academy',
-    description: 'Comprehensive makeup education through Dimple Glam Academy. Hands-on learning modules covering everyday self-grooming, professional blending techniques, product selection, and bridal vanity secrets.',
+    title: 'Dimple Glam Academy',
+    category: 'Educational Brand',
+    description: 'The educational division founded by Dimple Khinchi, rooted in the philosophy to Learn, Create, and Grow. Grounded in creative technique sharing and modern beauty artistry.',
     inclusions: [
-      'Step-by-Step Face Mapping & Skin Analysis',
-      'Correct Shade Matching & Concealing Mastery',
-      'Eye Makeup Techniques: Kohl, Cut Crease & Smokey Lids',
-      'Personal Vanity Audit & Certificate of Participation'
+      'Focus on Essential Face Mapping & Tone Matching',
+      'Eye Makeup Techniques & Blending Foundations',
+      'Bridal and Festive Finishing Techniques',
+      'Official Dimple Glam Academy Community'
     ],
-    kitFocus: 'Educational Tools & Hands-On Technique Demonstration',
-    imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85',
-    imageAlt: 'Makeup workshop tools and artistry brushes for Dimple Glam Academy masterclass'
+    kitFocus: 'Artistry Education • Learn • Create • Grow',
+    imageUrl: '/images/branding/logo.png',
+    imageAlt: 'Official Dimple Glam Academy circular emblem insignia'
   }
 ];

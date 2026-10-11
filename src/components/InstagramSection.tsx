@@ -7,26 +7,26 @@ export const InstagramSection: React.FC = () => {
   const instagramMoments = [
     {
       id: 'ig-1',
-      imageUrl: 'https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&w=600&q=80',
-      caption: 'Imperial Bridal Artistry',
-      tag: 'Wedding Rituals'
+      imageUrl: '/images/portfolio/bridal-joy-front.webp',
+      caption: 'Radiant Ceremony Elegance',
+      tag: 'Royal Bridal'
     },
     {
       id: 'ig-2',
-      imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
-      caption: 'Sunset Sangeet Dewiness',
-      tag: 'Cocktails & Sangeet'
+      imageUrl: '/images/portfolio/contemporary-veil.webp',
+      caption: 'High-Fashion Veil Radiance',
+      tag: 'Contemporary Glam'
     },
     {
       id: 'ig-3',
-      imageUrl: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80',
-      caption: 'Statement Kohl & Champagne',
-      tag: 'Festive Glamour'
+      imageUrl: '/images/portfolio/festive-crystal-glam.webp',
+      caption: 'Coral & Crystal Wing Accents',
+      tag: 'Cocktail & Festive'
     },
     {
       id: 'ig-4',
-      imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
-      caption: 'Couture Floral Hair Architecture',
+      imageUrl: '/images/portfolio/bridal-hair-back.webp',
+      caption: 'Floral Parandi & Cascading Waves',
       tag: 'Hair Artistry'
     }
   ];

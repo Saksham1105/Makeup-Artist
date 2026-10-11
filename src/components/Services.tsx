@@ -54,7 +54,11 @@ export const Services: React.FC<ServicesProps> = ({ onEnquireService }) => {
                     <img
                       src={service.imageUrl}
                       alt={service.imageAlt}
-                      className="w-full h-full object-cover object-center filter contrast-[1.03]"
+                      className={`w-full h-full ${
+                        service.id === 'academy' 
+                          ? 'object-contain p-6 sm:p-8 bg-[#121110]' 
+                          : 'object-cover object-center filter contrast-[1.03]'
+                      }`}
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#121110]/80 via-transparent to-transparent opacity-60" />
