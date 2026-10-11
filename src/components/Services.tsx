@@ -44,28 +44,40 @@ export const Services: React.FC<ServicesProps> = ({ onEnquireService }) => {
             return (
               <article
                 key={service.id}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center p-6 sm:p-10 bg-[#1A1817]/70 border border-[#C4BCB5]/15 transition-all duration-500 hover:border-[#C4BCB5]/35 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] ${
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center p-6 sm:p-10 bg-[#1A1817]/70 border border-[#C4BCB5]/15 transition-all duration-300 hover:border-[#C4BCB5]/35 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] ${
                   isEven ? 'lg:grid-flow-dense' : ''
                 }`}
               >
                 {/* Visual Panel (5 cols) */}
                 <div className={`lg:col-span-5 relative ${isEven ? 'lg:col-start-8' : ''}`}>
                   <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-[#121110] border border-[#C4BCB5]/20 editorial-zoom-frame">
-                    <img
-                      src={service.imageUrl}
-                      alt={service.imageAlt}
-                      className={`w-full h-full ${
-                        service.id === 'academy' 
-                          ? 'object-contain p-6 sm:p-8 bg-[#121110]' 
-                          : 'object-cover object-center filter contrast-[1.03]'
-                      }`}
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#121110]/80 via-transparent to-transparent opacity-60" />
+                    <picture>
+                      {service.srcSetWebp && (
+                        <source
+                          type="image/webp"
+                          srcSet={service.srcSetWebp}
+                          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 480px"
+                        />
+                      )}
+                      <img
+                        src={service.imageUrl}
+                        alt={service.imageAlt}
+                        className={`w-full h-full ${
+                          service.id === 'academy' 
+                            ? 'object-contain p-6 sm:p-8 bg-[#121110]' 
+                            : 'object-cover object-center filter contrast-[1.03]'
+                        }`}
+                        loading="lazy"
+                        decoding="async"
+                        width={768}
+                        height={550}
+                      />
+                    </picture>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#121110]/80 via-transparent to-transparent opacity-60 pointer-events-none" />
                     
                     {/* Category Label */}
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-[#121110]/90 backdrop-blur-sm text-[9px] uppercase tracking-[0.22em] text-[#F6F2EC] font-medium border border-[#C4BCB5]/20">
+                      <span className="px-3 py-1 bg-[#121110]/90 backdrop-blur-xs text-[9px] uppercase tracking-[0.22em] text-[#F6F2EC] font-medium border border-[#C4BCB5]/20">
                         {service.category}
                       </span>
                     </div>
@@ -156,7 +168,7 @@ export const Services: React.FC<ServicesProps> = ({ onEnquireService }) => {
           </div>
           <button
             onClick={() => onEnquireService(servicesData[0])}
-            className="px-8 py-4 border border-[#C4BCB5]/40 hover:border-[#F6F2EC] hover:bg-[#121110] text-[#F6F2EC] text-xs uppercase tracking-[0.24em] font-medium transition-all shrink-0"
+            className="px-8 py-4 border border-[#C4BCB5]/40 hover:border-[#F6F2EC] hover:bg-[#121110] text-[#F6F2EC] text-xs uppercase tracking-[0.24em] font-medium transition-all shrink-0 active:scale-98"
           >
             Request Bridal Itinerary
           </button>

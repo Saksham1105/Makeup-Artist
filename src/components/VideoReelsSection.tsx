@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, ArrowUpRight, Sparkles, X } from 'lucide-react';
 import { InstagramIcon, YouTubeIcon } from './Icons';
 import { siteConfig } from '../config/siteConfig';
@@ -9,7 +9,9 @@ interface ReelItem {
   category: string;
   duration: string;
   posterUrl: string;
+  posterSrcSet: string;
   videoUrl: string;
+  videoMobileUrl: string;
   description: string;
   sourceFile: string;
 }
@@ -20,8 +22,10 @@ const videoReelsData: ReelItem[] = [
     title: 'Sunlit Outdoor Bridal Grace',
     category: 'Destination Nuptials',
     duration: '0:10',
-    posterUrl: '/images/video-posters/reel-outdoor-bride.webp',
+    posterUrl: '/images/video-posters/reel-outdoor-bride-480.webp',
+    posterSrcSet: '/images/video-posters/reel-outdoor-bride-480.webp 480w, /images/video-posters/reel-outdoor-bride-720.webp 720w, /images/video-posters/reel-outdoor-bride-1080.webp 1080w',
     videoUrl: '/videos/reel-outdoor-bride.mp4',
+    videoMobileUrl: '/videos/reel-outdoor-bride-mobile.mp4',
     description: 'Daylight performance in crimson lehenga, capturing authentic bridal radiance and natural outdoor shimmer.',
     sourceFile: 'IMG_9794.MOV'
   },
@@ -30,8 +34,10 @@ const videoReelsData: ReelItem[] = [
     title: 'Royal Heritage Shimmer in Motion',
     category: 'Studio Bridal',
     duration: '0:14',
-    posterUrl: '/images/video-posters/reel-royal-shimmer.webp',
+    posterUrl: '/images/video-posters/reel-royal-shimmer-480.webp',
+    posterSrcSet: '/images/video-posters/reel-royal-shimmer-480.webp 480w, /images/video-posters/reel-royal-shimmer-720.webp 720w, /images/video-posters/reel-royal-shimmer-1080.webp 1080w',
     videoUrl: '/videos/reel-royal-shimmer.mp4',
+    videoMobileUrl: '/videos/reel-royal-shimmer-mobile.mp4',
     description: 'Dimensional polki and bandhani jewelry reflections with sculpted dewy bridal base under studio illumination.',
     sourceFile: 'IMG_1736.MOV'
   },
@@ -40,8 +46,10 @@ const videoReelsData: ReelItem[] = [
     title: 'Contemporary Editorial Glow',
     category: 'High-Fashion Glam',
     duration: '0:09',
-    posterUrl: '/images/video-posters/reel-editorial-glow.webp',
+    posterUrl: '/images/video-posters/reel-editorial-glow-480.webp',
+    posterSrcSet: '/images/video-posters/reel-editorial-glow-480.webp 480w, /images/video-posters/reel-editorial-glow-720.webp 720w, /images/video-posters/reel-editorial-glow-1080.webp 1080w',
     videoUrl: '/videos/reel-editorial-glow.mp4',
+    videoMobileUrl: '/videos/reel-editorial-glow-mobile.mp4',
     description: 'High-contrast cheekbone glow and crystal corset accents highlighting modern editorial technique.',
     sourceFile: 'IMG_9720.MOV'
   },
@@ -50,8 +58,10 @@ const videoReelsData: ReelItem[] = [
     title: 'Artistry in Action: Studio Technique',
     category: 'Masterclass Behind the Scenes',
     duration: '0:03',
-    posterUrl: '/images/video-posters/reel-dimple-brush.webp',
+    posterUrl: '/images/video-posters/reel-dimple-brush-480.webp',
+    posterSrcSet: '/images/video-posters/reel-dimple-brush-480.webp 480w, /images/video-posters/reel-dimple-brush-720.webp 720w, /images/video-posters/reel-dimple-brush-1080.webp 1080w',
     videoUrl: '/videos/reel-dimple-brush.mp4',
+    videoMobileUrl: '/videos/reel-dimple-brush-mobile.mp4',
     description: 'Dimple Khinchi holding brushes actively blending eye makeup and contouring client features in studio.',
     sourceFile: 'IMG_0108.MOV'
   }
@@ -68,13 +78,13 @@ export const VideoReelsSection: React.FC = () => {
       const vid = videoRefs.current[id];
       if (vid) {
         if (vid.paused) {
-          vid.play();
+          vid.play().catch(() => {});
         } else {
           vid.pause();
         }
       }
     } else {
-      // Pause previous
+      // Pause previously playing inline video
       if (playingInlineId && videoRefs.current[playingInlineId]) {
         videoRefs.current[playingInlineId]?.pause();
       }
@@ -99,6 +109,17 @@ export const VideoReelsSection: React.FC = () => {
   const handleCloseModal = () => {
     setActiveModalReel(null);
   };
+
+  // Keyboard Escape listener for video modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && activeModalReel) {
+        handleCloseModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeModalReel]);
 
   return (
     <section id="reels" className="py-24 lg:py-32 bg-[#1A1817] border-t border-[#C4BCB5]/15 overflow-hidden">
@@ -156,17 +177,27 @@ export const VideoReelsSection: React.FC = () => {
               >
                 {/* 9:16 Aspect Frame */}
                 <div className="relative aspect-[9/16] w-full overflow-hidden bg-black">
-                  {/* Poster Image (Visible when not playing) */}
+                  {/* Lightweight Poster Image (Rendered with responsive srcSet) */}
                   {!isPlayingInline && (
-                    <img
-                      src={reel.posterUrl}
-                      alt={reel.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcSet={reel.posterSrcSet}
+                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 280px"
+                      />
+                      <img
+                        src={reel.posterUrl}
+                        alt={reel.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                        width={720}
+                        height={1280}
+                      />
+                    </picture>
                   )}
 
-                  {/* HTML5 Video Element (Instantiated when requested) */}
+                  {/* HTML5 Video Element: Only instantiated on user click to prevent eager downloads */}
                   {isPlayingInline && (
                     <video
                       ref={(el) => { videoRefs.current[reel.id] = el; }}
@@ -174,6 +205,7 @@ export const VideoReelsSection: React.FC = () => {
                       poster={reel.posterUrl}
                       loop
                       playsInline
+                      preload="metadata"
                       muted={isMuted}
                       className="w-full h-full object-cover"
                       onClick={() => handleToggleInlinePlay(reel.id)}
@@ -303,6 +335,7 @@ export const VideoReelsSection: React.FC = () => {
                 autoPlay
                 controls
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
             </div>

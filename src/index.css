@@ -26,9 +26,16 @@
   --accent-oxblood: #7A2837;
 }
 
+/* iOS Safari Native Scroll Optimization */
 html {
-  scroll-behavior: smooth;
   color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -48,12 +55,16 @@ body {
   color: #F6F2EC;
   font-family: var(--font-sans);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Bodoni Moda Editorial Typography */
 h1, h2, h3, .font-serif {
   font-family: var(--font-serif);
   letter-spacing: -0.015em;
+  font-display: swap;
 }
 
 /* Minimalist Scrollbar */
@@ -80,23 +91,39 @@ h1, h2, h3, .font-serif {
   transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s ease;
 }
 
-.editorial-zoom-frame:hover img {
-  transform: scale(1.045);
+@media (hover: hover) {
+  .editorial-zoom-frame:hover img {
+    transform: scale(1.045);
+  }
 }
 
-/* Glass Surfaces */
+/* Glass Surfaces - Tuned for iOS Safari GPU Efficiency */
 .glass-obsidian {
-  background: rgba(26, 24, 23, 0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(26, 24, 23, 0.94);
   border: 1px solid rgba(196, 188, 181, 0.15);
 }
 
-/* Editorial Reveal Animations */
-@keyframes heroFadeUp {
+@supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+  .glass-obsidian {
+    background: rgba(26, 24, 23, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Mobile blur simplification to prevent frame-rate drops */
+@media (max-width: 768px) {
+  .glass-obsidian {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+}
+
+/* Editorial Reveal Animations - Non-blocking: Visible immediately by default */
+@keyframes heroSoftFade {
   from {
-    opacity: 0;
-    transform: translateY(24px);
+    opacity: 0.7;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -104,50 +131,35 @@ h1, h2, h3, .font-serif {
   }
 }
 
-@keyframes heroImageReveal {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.hero-anim-eyebrow {
-  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.hero-anim-title {
-  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-  opacity: 0;
-}
-
-.hero-anim-copy {
-  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-  opacity: 0;
-}
-
+/* Elements are 100% visible immediately, avoiding any LCP delay */
+.hero-anim-eyebrow,
+.hero-anim-title,
+.hero-anim-copy,
 .hero-anim-cta {
-  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-  opacity: 0;
+  opacity: 1;
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .hero-anim-eyebrow {
+    animation: heroSoftFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-anim-title {
+    animation: heroSoftFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-anim-copy {
+    animation: heroSoftFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-anim-cta {
+    animation: heroSoftFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
 }
 
 .hero-anim-image {
-  animation: heroImageReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
-  opacity: 0;
+  opacity: 1;
 }
 
 /* Scroll reveal helper */
 .reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-on-scroll.is-revealed {
   opacity: 1;
-  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }

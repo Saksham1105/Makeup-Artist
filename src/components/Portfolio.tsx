@@ -61,7 +61,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onOpenLightbox }) => {
           })}
         </div>
 
-        {/* Asymmetric Haute Gallery Grid */}
+        {/* Responsive Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredItems.map((item, index) => {
             const actualIndex = portfolioData.findIndex((p) => p.id === item.id);
@@ -71,7 +71,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onOpenLightbox }) => {
               <div
                 key={item.id}
                 onClick={() => onOpenLightbox(item, targetIndex)}
-                className="group relative cursor-pointer overflow-hidden bg-[#121110] border border-[#C4BCB5]/20 shadow-lg transition-all duration-500 hover:border-[#C4BCB5]/50 hover:shadow-2xl"
+                className="group relative cursor-pointer overflow-hidden bg-[#121110] border border-[#C4BCB5]/20 shadow-lg transition-all duration-300 hover:border-[#C4BCB5]/50 hover:shadow-2xl"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
@@ -82,54 +82,69 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onOpenLightbox }) => {
                 }}
                 aria-label={`View look: ${item.title}`}
               >
-              {/* Image Frame */}
-              <div className="aspect-[4/5] overflow-hidden editorial-zoom-frame">
-                <img
-                  src={item.imageUrl}
-                  alt={item.imageAlt}
-                  className="w-full h-full object-cover object-center filter contrast-[1.03]"
-                  loading="lazy"
-                />
-              </div>
+                {/* Image Frame with Aspect Ratio Reservation */}
+                <div className="aspect-[4/5] overflow-hidden editorial-zoom-frame bg-[#121110]">
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={item.srcSetWebp}
+                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px"
+                    />
+                    <source
+                      type="image/jpeg"
+                      srcSet={item.srcSetJpg}
+                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px"
+                    />
+                    <img
+                      src={item.thumbnailUrl}
+                      alt={item.imageAlt}
+                      className="w-full h-full object-cover object-center filter contrast-[1.03]"
+                      loading="lazy"
+                      decoding="async"
+                      width={item.width}
+                      height={item.height}
+                    />
+                  </picture>
+                </div>
 
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#121110]/95 via-[#121110]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-7 text-[#F6F2EC]">
-                <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-[10px] uppercase tracking-widest text-[#7A2837] font-semibold">
-                      {item.category}
-                    </span>
-                    <span className="text-[#C4BCB5]/40 text-xs">•</span>
-                    <span className="text-[10px] uppercase tracking-wider text-[#C4BCB5]/80">
-                      {item.occasion}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-2xl font-normal text-white mb-3">
-                    {item.title}
-                  </h3>
-                  <div className="flex items-center gap-2 text-xs text-[#C4BCB5] font-medium tracking-wider uppercase pt-2.5 border-t border-[#C4BCB5]/20">
-                    <Eye className="w-3.5 h-3.5 text-[#7A2837]" />
-                    <span>Expand Editorial View</span>
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121110]/95 via-[#121110]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-7 text-[#F6F2EC]">
+                  <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="text-[10px] uppercase tracking-widest text-[#7A2837] font-semibold">
+                        {item.category}
+                      </span>
+                      <span className="text-[#C4BCB5]/40 text-xs">•</span>
+                      <span className="text-[10px] uppercase tracking-wider text-[#C4BCB5]/80">
+                        {item.occasion}
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-2xl font-normal text-white mb-3">
+                      {item.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-xs text-[#C4BCB5] font-medium tracking-wider uppercase pt-2.5 border-t border-[#C4BCB5]/20">
+                      <Eye className="w-3.5 h-3.5 text-[#7A2837]" />
+                      <span>Expand Editorial View</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Touch Indicator Glyph */}
-              <div className="absolute top-3 right-3 sm:hidden p-2 bg-[#121110]/80 text-[#F6F2EC] rounded-full border border-[#C4BCB5]/20">
-                <Eye className="w-3.5 h-3.5" />
+                {/* Touch Indicator Glyph */}
+                <div className="absolute top-3 right-3 sm:hidden p-2 bg-[#121110]/80 text-[#F6F2EC] rounded-full border border-[#C4BCB5]/20">
+                  <Eye className="w-3.5 h-3.5" />
+                </div>
               </div>
-            </div>
             );
           })}
         </div>
 
-        {/* Bottom CTA to Instagram (Phase 3 Mandate: Simple CTA "Follow on Instagram") */}
+        {/* Bottom CTA to Instagram */}
         <div className="mt-20 text-center">
           <a
             href={siteConfig.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-[#121110] border border-[#C4BCB5]/30 hover:border-[#F6F2EC] text-[#F6F2EC] text-xs uppercase tracking-[0.25em] font-medium transition-all shadow-md"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-[#121110] border border-[#C4BCB5]/30 hover:border-[#F6F2EC] text-[#F6F2EC] text-xs uppercase tracking-[0.25em] font-medium transition-all shadow-md active:scale-98"
           >
             <InstagramIcon className="w-4 h-4 text-[#7A2837] group-hover:rotate-6 transition-transform" />
             <span>Follow on Instagram</span>

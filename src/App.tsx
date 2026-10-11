@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -8,12 +8,18 @@ import { Portfolio } from './components/Portfolio';
 import { VideoReelsSection } from './components/VideoReelsSection';
 import { BookingContact } from './components/BookingContact';
 import { Footer } from './components/Footer';
-import { WhatsAppModal } from './components/WhatsAppModal';
-import { LightboxModal } from './components/LightboxModal';
 import { MobileBookingBar } from './components/MobileBookingBar';
 import { siteConfig } from './config/siteConfig';
 import type { ServiceItem } from './data/servicesData';
 import { portfolioData, type PortfolioItem } from './data/portfolioData';
+
+// Code-split modals so they don't bloat the critical initial JavaScript bundle
+const WhatsAppModal = lazy(() =>
+  import('./components/WhatsAppModal').then((m) => ({ default: m.WhatsAppModal }))
+);
+const LightboxModal = lazy(() =>
+  import('./components/LightboxModal').then((m) => ({ default: m.LightboxModal }))
+);
 
 export function App() {
   // Modal states
@@ -80,21 +86,29 @@ export function App() {
       {/* Discreet Mobile Floating Action Bar */}
       <MobileBookingBar onOpenBooking={handleOpenGeneralBooking} />
 
-      {/* Interactive Lightbox Modal */}
-      <LightboxModal
-        items={portfolioData}
-        currentIndex={lightboxIndex}
-        onClose={handleCloseLightbox}
-        onNavigate={handleNavigateLightbox}
-      />
+      {/* Lazy-loaded Interactive Lightbox Modal */}
+      {lightboxIndex !== null && (
+        <Suspense fallback={null}>
+          <LightboxModal
+            items={portfolioData}
+            currentIndex={lightboxIndex}
+            onClose={handleCloseLightbox}
+            onNavigate={handleNavigateLightbox}
+          />
+        </Suspense>
+      )}
 
-      {/* Safe WhatsApp Booking Helper Modal */}
-      <WhatsAppModal
-        isOpen={whatsAppModalOpen}
-        onClose={() => setWhatsAppModalOpen(false)}
-        serviceTitle={activeServiceTitle}
-        initialMessage={customMessage}
-      />
+      {/* Lazy-loaded WhatsApp Booking Helper Modal */}
+      {whatsAppModalOpen && (
+        <Suspense fallback={null}>
+          <WhatsAppModal
+            isOpen={whatsAppModalOpen}
+            onClose={() => setWhatsAppModalOpen(false)}
+            serviceTitle={activeServiceTitle}
+            initialMessage={customMessage}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

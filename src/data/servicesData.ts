@@ -7,6 +7,7 @@ export interface ServiceItem {
   inclusions: string[];
   kitFocus: string;
   imageUrl: string;
+  srcSetWebp?: string;
   imageAlt: string;
 }
 
@@ -24,7 +25,8 @@ export const servicesData: ServiceItem[] = [
       'Skin Preparation for Lasting Radiance'
     ],
     kitFocus: 'Camera-Ready & Long-Wear Formulations • Tailored to Indian Skin Undertones',
-    imageUrl: '/images/portfolio/bridal-closed-eyes.webp',
+    imageUrl: '/images/portfolio/bridal-closed-eyes-768.webp',
+    srcSetWebp: '/images/portfolio/bridal-closed-eyes-480.webp 480w, /images/portfolio/bridal-closed-eyes-768.webp 768w, /images/portfolio/bridal-closed-eyes-1200.webp 1200w',
     imageAlt: 'Detailed bridal makeup portrait highlighting intricate eye makeup and jewelry'
   },
   {
@@ -40,7 +42,8 @@ export const servicesData: ServiceItem[] = [
       'Dupatta & Outfit Drape Setting'
     ],
     kitFocus: 'Illuminating & High-Definition Evening Formulations',
-    imageUrl: '/images/portfolio/contemporary-veil.webp',
+    imageUrl: '/images/portfolio/contemporary-veil-768.webp',
+    srcSetWebp: '/images/portfolio/contemporary-veil-480.webp 480w, /images/portfolio/contemporary-veil-768.webp 768w, /images/portfolio/contemporary-veil-1200.webp 1200w',
     imageAlt: 'Contemporary bride with veil and crystal corset showcasing radiant glam'
   },
   {
@@ -56,7 +59,8 @@ export const servicesData: ServiceItem[] = [
       'Saree & Dupatta Pinning'
     ],
     kitFocus: 'Lightweight Breathable & Camera-Ready Bases',
-    imageUrl: '/images/portfolio/festive-crystal-glam.webp',
+    imageUrl: '/images/portfolio/festive-crystal-glam-768.webp',
+    srcSetWebp: '/images/portfolio/festive-crystal-glam-480.webp 480w, /images/portfolio/festive-crystal-glam-768.webp 768w, /images/portfolio/festive-crystal-glam-1200.webp 1200w',
     imageAlt: 'Festive party makeup with embellished attire and crystal winged eyeliner'
   },
   {
@@ -72,7 +76,8 @@ export const servicesData: ServiceItem[] = [
       'On-Location Durability Calibration'
     ],
     kitFocus: 'Studio Strobe & High-Definition Formulations',
-    imageUrl: '/images/portfolio/bridal-outdoor-columns.webp',
+    imageUrl: '/images/portfolio/bridal-outdoor-columns-768.webp',
+    srcSetWebp: '/images/portfolio/bridal-outdoor-columns-480.webp 480w, /images/portfolio/bridal-outdoor-columns-768.webp 768w, /images/portfolio/bridal-outdoor-columns-1200.webp 1200w',
     imageAlt: 'Outdoor destination bridal photoshoot with traditional crimson lehenga and pillars'
   },
   {
@@ -88,7 +93,8 @@ export const servicesData: ServiceItem[] = [
       'Official Dimple Glam Academy Community'
     ],
     kitFocus: 'Artistry Education • Learn • Create • Grow',
-    imageUrl: '/images/branding/logo.png',
+    imageUrl: '/images/branding/logo-160.webp',
+    srcSetWebp: '/images/branding/logo-96.webp 96w, /images/branding/logo-160.webp 160w, /images/branding/logo-320.webp 320w',
     imageAlt: 'Official Dimple Glam Academy circular emblem insignia'
   }
 ];

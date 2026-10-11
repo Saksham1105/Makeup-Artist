@@ -10,32 +10,45 @@ export const MobileBookingBar: React.FC<MobileBookingBarProps> = ({ onOpenBookin
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
+  // Modern IntersectionObserver implementation: Zero scroll event listeners
   useEffect(() => {
-    const handleScroll = () => {
-      if (isDismissed) return;
+    if (isDismissed) return;
 
-      const scrollY = window.scrollY;
-      const contactEl = document.getElementById('contact');
+    let passedHero = false;
+    let contactInView = false;
 
-      let contactInView = false;
-      if (contactEl) {
-        const rect = contactEl.getBoundingClientRect();
-        // Hide when contact section enters viewport
-        if (rect.top <= window.innerHeight - 80) {
-          contactInView = true;
-        }
-      }
-
-      // Show only after scrolling past hero and when not already at contact section
-      if (scrollY > 450 && !contactInView) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+    const updateVisibility = () => {
+      setIsVisible(passedHero && !contactInView);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const heroEl = document.getElementById('home');
+    const contactEl = document.getElementById('contact');
+
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        // When hero is NOT intersecting, user has scrolled past it
+        passedHero = !entry.isIntersecting;
+        updateVisibility();
+      },
+      { threshold: 0.1 }
+    );
+
+    const contactObserver = new IntersectionObserver(
+      ([entry]) => {
+        // When contact section enters viewport, hide floating booking bar
+        contactInView = entry.isIntersecting;
+        updateVisibility();
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroEl) heroObserver.observe(heroEl);
+    if (contactEl) contactObserver.observe(contactEl);
+
+    return () => {
+      heroObserver.disconnect();
+      contactObserver.disconnect();
+    };
   }, [isDismissed]);
 
   if (!isVisible || isDismissed) return null;
@@ -58,7 +71,7 @@ export const MobileBookingBar: React.FC<MobileBookingBarProps> = ({ onOpenBookin
         <div className="flex items-center gap-2">
           <button
             onClick={onOpenBooking}
-            className="px-5 py-2.5 bg-[#7A2837] hover:bg-[#963546] text-white text-[11px] uppercase tracking-[0.2em] font-medium flex items-center gap-1.5 transition-all shadow-md active:scale-95"
+            className="px-5 py-2.5 bg-[#7A2837] hover:bg-[#963546] text-white text-[11px] uppercase tracking-[0.2em] font-medium flex items-center gap-1.5 transition-transform active:scale-95 shadow-md"
           >
             <span>Book Now</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

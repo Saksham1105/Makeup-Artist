@@ -10,9 +10,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const rafId = useRef<number | null>(null);
+  const isScrolledRef = useRef(false);
 
-  // Phase 2 Simplified Navigation Labels
+  // Simplified Navigation Labels
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
@@ -21,37 +21,53 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
     { name: 'Contact', href: '#contact' },
   ];
 
+  // Lightweight scroll state tracking without layout thrashing
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      if (rafId.current !== null) return;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPos = window.scrollY;
+          const shouldBeScrolled = scrollPos > 30;
 
-      rafId.current = requestAnimationFrame(() => {
-        const scrollPos = window.scrollY;
-        setIsScrolled(scrollPos > 30);
-
-        // Active section tracking
-        const sections = ['home', 'about', 'services', 'portfolio', 'contact'];
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const el = document.getElementById(sections[i]);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 160) {
-              setActiveSection(sections[i]);
-              break;
-            }
+          if (shouldBeScrolled !== isScrolledRef.current) {
+            isScrolledRef.current = shouldBeScrolled;
+            setIsScrolled(shouldBeScrolled);
           }
-        }
-        rafId.current = null;
-      });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafId.current !== null) {
-        cancelAnimationFrame(rafId.current);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Section Observer for active menu item (zero layout thrashing on scroll)
+  useEffect(() => {
+    const sectionIds = ['home', 'about', 'services', 'portfolio', 'contact'];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0,
       }
-    };
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   // Keyboard Escape listener for mobile drawer
@@ -65,23 +81,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll smoothly when mobile menu is open without iOS jump
   useEffect(() => {
     if (mobileMenuOpen) {
+      const originalStyle = window.getComputedStyle(document.body).overflow;
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+      return () => {
+        document.body.style.overflow = originalStyle;
+      };
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [mobileMenuOpen]);
 
   return (
     <>
       {/* Signature Navigation Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-[padding,background-color,border-color] duration-300 ease-out ${
           isScrolled
             ? 'py-3.5 bg-[#1A1817]/95 backdrop-blur-md border-b border-[#C4BCB5]/15 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'
             : 'py-5 sm:py-6 bg-transparent border-b border-transparent'
@@ -96,13 +111,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
             aria-label="Dimple Khinchi — Dimple Glam Academy"
           >
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-[#C4BCB5]/30 bg-[#121110] shrink-0 p-0.5 group-hover:border-[#7A2837] transition-colors shadow-sm">
-              <img
-                src="/images/branding/logo.png"
-                alt="Dimple Glam Academy Emblem"
-                className="w-full h-full object-contain rounded-full"
-                width={40}
-                height={40}
-              />
+              <picture>
+                <source type="image/webp" srcSet="/images/branding/logo-96.webp 1x, /images/branding/logo-160.webp 2x" />
+                <img
+                  src="/images/branding/logo-96.webp"
+                  alt="Dimple Glam Academy Emblem"
+                  className="w-full h-full object-contain rounded-full"
+                  width={40}
+                  height={40}
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div className="flex flex-col">
               <span className={`font-serif tracking-[0.2em] font-normal uppercase text-[#F6F2EC] transition-all duration-300 group-hover:text-[#C4BCB5] leading-tight ${
@@ -125,14 +144,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`text-xs uppercase tracking-[0.2em] font-medium transition-all duration-200 relative py-1 flex items-center gap-1.5 ${
+                  className={`text-xs uppercase tracking-[0.2em] font-medium transition-colors duration-200 relative py-1 flex items-center gap-1.5 ${
                     isActive
                       ? 'text-[#F6F2EC]'
                       : 'text-[#C4BCB5]/75 hover:text-[#F6F2EC]'
                   }`}
                 >
                   {isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#7A2837] inline-block animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#7A2837] inline-block" />
                   )}
                   <span>{link.name}</span>
                 </a>
@@ -155,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           <div className="flex md:hidden items-center gap-3">
             <button
               onClick={onOpenBooking}
-              className="px-3.5 py-1.5 bg-[#7A2837] text-white text-[10px] uppercase tracking-[0.2em] font-medium"
+              className="px-3.5 py-1.5 bg-[#7A2837] text-white text-[10px] uppercase tracking-[0.2em] font-medium active:scale-95 transition-transform"
             >
               Book Now
             </button>
@@ -175,11 +194,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 z-50 bg-[#121110]/85 backdrop-blur-md md:hidden animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#121110]/85 backdrop-blur-md md:hidden"
           onClick={() => setMobileMenuOpen(false)}
         >
           <div
-            className="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-[#1A1817] border-l border-[#C4BCB5]/20 p-7 flex flex-col justify-between shadow-2xl animate-in slide-in-from-right duration-300"
+            className="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-[#1A1817] border-l border-[#C4BCB5]/20 p-7 flex flex-col justify-between shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div>
@@ -188,11 +207,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-full overflow-hidden border border-[#C4BCB5]/30 bg-[#121110] shrink-0 p-0.5">
                     <img
-                      src="/images/branding/logo.png"
+                      src="/images/branding/logo-96.webp"
                       alt="Dimple Glam Academy Emblem"
                       className="w-full h-full object-contain rounded-full"
                       width={32}
                       height={32}
+                      decoding="async"
                     />
                   </div>
                   <div>
@@ -236,7 +256,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                   setMobileMenuOpen(false);
                   onOpenBooking();
                 }}
-                className="w-full py-4 bg-[#7A2837] hover:bg-[#963546] text-white text-xs uppercase tracking-[0.25em] font-medium flex items-center justify-center gap-2 transition-all shadow-lg"
+                className="w-full py-4 bg-[#7A2837] hover:bg-[#963546] text-white text-xs uppercase tracking-[0.25em] font-medium flex items-center justify-center gap-2 transition-all shadow-lg active:scale-98"
               >
                 <span>Book Now</span>
                 <ArrowUpRight className="w-4 h-4" />

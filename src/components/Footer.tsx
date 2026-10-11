@@ -21,13 +21,18 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-6 space-y-4">
             <div className="flex items-center gap-3.5">
               <div className="w-12 h-12 rounded-full overflow-hidden border border-[#C4BCB5]/30 bg-[#121110] shrink-0 p-0.5 shadow-md">
-                <img
-                  src="/images/branding/logo.png"
-                  alt="Official Dimple Glam Academy Emblem"
-                  className="w-full h-full object-contain rounded-full"
-                  width={48}
-                  height={48}
-                />
+                <picture>
+                  <source type="image/webp" srcSet="/images/branding/logo-96.webp 1x, /images/branding/logo-160.webp 2x" />
+                  <img
+                    src="/images/branding/logo-96.webp"
+                    alt="Official Dimple Glam Academy Emblem"
+                    className="w-full h-full object-contain rounded-full"
+                    width={48}
+                    height={48}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
               <div>
                 <span className="font-serif text-2xl sm:text-3xl tracking-[0.18em] font-normal uppercase text-[#F6F2EC] block leading-tight">
@@ -88,7 +93,7 @@ export const Footer: React.FC = () => {
               >
                 <InstagramIcon className="w-4 h-4 text-[#7A2837]" />
                 <span>{siteConfig.instagramHandle}</span>
-                <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100" />
+                <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
               </a>
 
               <a
@@ -99,7 +104,7 @@ export const Footer: React.FC = () => {
               >
                 <YouTubeIcon className="w-4 h-4 text-[#7A2837]" />
                 <span>{siteConfig.youtubeHandle}</span>
-                <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100" />
+                <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
               </a>
             </div>
 

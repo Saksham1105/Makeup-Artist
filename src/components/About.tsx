@@ -27,14 +27,22 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
               
               {/* Primary Image: Dimple in Action */}
               <div className="relative aspect-[3/4] overflow-hidden bg-[#121110] border border-[#C4BCB5]/25 shadow-2xl">
-                <img
-                  src="/images/video-posters/reel-dimple-brush.webp"
-                  alt="Dimple Khinchi actively applying and blending makeup on client in studio"
-                  className="w-full h-full object-cover filter contrast-[1.02]"
-                  loading="lazy"
-                  width={1080}
-                  height={1920}
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/video-posters/reel-dimple-brush-480.webp 480w, /images/video-posters/reel-dimple-brush-720.webp 720w, /images/video-posters/reel-dimple-brush-1080.webp 1080w"
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 420px"
+                  />
+                  <img
+                    src="/images/video-posters/reel-dimple-brush-480.webp"
+                    alt="Dimple Khinchi actively applying and blending makeup on client in studio"
+                    className="w-full h-full object-cover filter contrast-[1.02]"
+                    loading="lazy"
+                    decoding="async"
+                    width={720}
+                    height={960}
+                  />
+                </picture>
                 
                 {/* Live Action Caption Overlay */}
                 <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-[#121110]/95 via-[#121110]/70 to-transparent">
@@ -49,14 +57,22 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
 
               {/* Overlapping Detail Inset: Authentic Medal */}
               <div className="absolute -bottom-8 -right-6 sm:-bottom-10 sm:-right-8 w-44 sm:w-52 aspect-square overflow-hidden shadow-2xl border-2 border-[#1A1817] bg-[#121110] hidden sm:block">
-                <img
-                  src="/images/portfolio/credential-medal.webp"
-                  alt="Official Shining Star of Mahima Bajaj Academy medal recognition"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  width={1125}
-                  height={2000}
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/portfolio/credential-medal-480.webp 480w, /images/portfolio/credential-medal-768.webp 768w"
+                    sizes="(max-width: 640px) 160px, 208px"
+                  />
+                  <img
+                    src="/images/portfolio/credential-medal-480.webp"
+                    alt="Official Shining Star of Mahima Bajaj Academy medal recognition"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={480}
+                    height={480}
+                  />
+                </picture>
                 <div className="absolute bottom-0 inset-x-0 p-2.5 bg-[#121110]/90 backdrop-blur-xs text-center border-t border-[#C4BCB5]/20">
                   <span className="text-[8px] uppercase tracking-wider text-[#C4BCB5] font-medium block truncate">
                     Shining Star of Mahima Bajaj Academy
@@ -114,13 +130,17 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
               {/* Credential 2: Dimple Glam Academy Branding */}
               <div className="p-4 bg-[#121110]/60 border border-[#C4BCB5]/10 flex items-start gap-3">
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-[#C4BCB5]/30 bg-[#121110] shrink-0 p-0.5">
-                  <img
-                    src="/images/branding/logo.png"
-                    alt="Dimple Glam Academy Emblem"
-                    className="w-full h-full object-contain rounded-full"
-                    width={40}
-                    height={40}
-                  />
+                  <picture>
+                    <source type="image/webp" srcSet="/images/branding/logo-96.webp 1x, /images/branding/logo-160.webp 2x" />
+                    <img
+                      src="/images/branding/logo-96.webp"
+                      alt="Dimple Glam Academy Emblem"
+                      className="w-full h-full object-contain rounded-full"
+                      width={40}
+                      height={40}
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
                 <div>
                   <div className="flex items-center gap-2 text-[#7A2837] mb-1">

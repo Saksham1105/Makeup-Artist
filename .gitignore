@@ -46,3 +46,7 @@ coverage/
 # Raw media source folder (optimized assets served from public/)
 Content/
 
+# Scratch audit logs & temporary generation scripts
+research/*.json
+research/*.py
+

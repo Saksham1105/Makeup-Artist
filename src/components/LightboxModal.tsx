@@ -34,11 +34,12 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
     };
 
     window.addEventListener('keydown', handleKeyDown);
+    const originalOverflow = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = 'hidden';
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = originalOverflow;
     };
   }, [isOpen, currentIndex, hasPrev, hasNext, onClose, onNavigate]);
 
@@ -46,7 +47,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 backdrop-blur-md p-4 sm:p-8 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 sm:p-8 animate-in fade-in duration-200"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -91,12 +92,22 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
         {/* Current Image Frame */}
         <div className="relative overflow-hidden max-h-[72vh] flex items-center justify-center border border-[#C4BCB5]/25 bg-black/40 shadow-2xl">
-          <img
-            src={currentItem.imageUrl}
-            alt={currentItem.imageAlt}
-            className="max-h-[72vh] max-w-full object-contain select-none"
-            loading="eager"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={currentItem.lightboxSrcSet}
+              sizes="(max-width: 1024px) 95vw, 1200px"
+            />
+            <img
+              src={currentItem.lightboxUrl}
+              alt={currentItem.imageAlt}
+              className="max-h-[72vh] max-w-full object-contain select-none"
+              loading="eager"
+              decoding="async"
+              width={currentItem.width}
+              height={currentItem.height}
+            />
+          </picture>
         </div>
 
         {/* Image Caption */}

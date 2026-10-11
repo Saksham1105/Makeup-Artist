@@ -15,9 +15,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
       id="home"
       className="relative min-h-screen pt-32 pb-20 lg:pt-40 lg:pb-28 flex items-center bg-[#121110] overflow-hidden"
     >
-      {/* Ambient background glow */}
-      <div className="absolute top-1/4 -left-36 w-[30rem] h-[30rem] rounded-full bg-[#2E1E26]/35 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-[26rem] h-[26rem] rounded-full bg-[#7A2837]/15 blur-[160px] pointer-events-none" />
+      {/* GPU-calibrated ambient background accents */}
+      <div 
+        className="absolute top-1/4 -left-32 w-80 h-80 sm:w-[28rem] sm:h-[28rem] rounded-full bg-[#2E1E26]/30 blur-2xl md:blur-3xl pointer-events-none transform-gpu" 
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute bottom-10 right-0 w-72 h-72 sm:w-[24rem] sm:h-[24rem] rounded-full bg-[#7A2837]/15 blur-2xl md:blur-3xl pointer-events-none transform-gpu" 
+        aria-hidden="true"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
@@ -25,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
           {/* Left Column: Expressive Headline & Narrative (7 cols) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             
-            {/* Staggered Eyebrow */}
+            {/* Immediate Eyebrow */}
             <div className="flex items-center gap-3 mb-6 hero-anim-eyebrow">
               <span className="h-[1px] w-6 bg-[#7A2837]" />
               <span className="text-[11px] uppercase tracking-[0.28em] text-[#C4BCB5] font-medium">
@@ -33,18 +39,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               </span>
             </div>
 
-            {/* Staggered Bodoni Headline: V3 Personalized Identity */}
+            {/* Instant Bodoni Headline: V3 Personalized Identity */}
             <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] leading-[1.03] text-[#F6F2EC] mb-8 font-normal hero-anim-title">
               Your Look. <br />
               <span className="italic font-light text-[#C4BCB5]">Your Moment.</span>
             </h1>
 
-            {/* Staggered Supporting Copy Grounded in Evidence */}
+            {/* Immediate Supporting Copy Grounded in Evidence */}
             <p className="max-w-xl text-base sm:text-lg text-[#C4BCB5]/85 leading-relaxed font-light mb-10 hero-anim-copy">
               Bespoke bridal, celebration, and shoot makeup artistry by <strong className="text-[#F6F2EC] font-normal">Dimple Khinchi</strong>. Celebrating your authentic individuality with luminous, camera-ready looks calibrated to endure ceremonial tears and extended wedding hours.
             </p>
 
-            {/* Staggered Primary & Secondary CTAs (Phase 2 & 3 Mandate) */}
+            {/* Primary & Secondary CTAs Visible Immediately */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-12 hero-anim-cta">
               <button
                 onClick={onOpenBooking}
@@ -62,8 +68,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               </a>
             </div>
 
-            {/* Staggered Micro-Meta Details Grounded in Ajmer/Jaipur */}
-            <div className="flex flex-wrap items-center gap-6 pt-8 border-t border-[#C4BCB5]/15 text-xs text-[#C4BCB5]/75 hero-anim-cta">
+            {/* Micro-Meta Details Grounded in Ajmer/Jaipur */}
+            <div className="flex flex-wrap items-center gap-6 pt-8 border-t border-[#C4BCB5]/15 text-xs text-[#C4BCB5]/75">
               <a
                 href={siteConfig.instagramUrl}
                 target="_blank"
@@ -85,25 +91,39 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
 
           </div>
 
-          {/* Right Column: Dominant Editorial Portrait with Precise Focal Position (5 cols) */}
+          {/* Right Column: Dominant Editorial Portrait with Precise Responsive Delivery (5 cols) */}
           <div className="lg:col-span-5 relative hero-anim-image">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Outer Subtle Frame Accent */}
+              {/* Outer Frame Accent */}
               <div className="absolute -inset-3 sm:-inset-4 border border-[#C4BCB5]/20 pointer-events-none translate-x-2 translate-y-2 sm:translate-x-3 sm:translate-y-3" />
 
-              {/* Dominant Image Container */}
+              {/* Dominant Image Container with explicit aspect ratio */}
               <div className="relative aspect-[4/5] overflow-hidden bg-[#1A1817] shadow-2xl border border-[#C4BCB5]/30">
                 {!imgError ? (
-                  <img
-                    src="/images/portfolio/bridal-regal-portrait.webp"
-                    alt="Dimple Khinchi royal Rajasthani bridal makeup portrait showcasing emerald polki choker and bandhani dupatta"
-                    className="w-full h-full object-cover object-[center_18%] filter contrast-[1.03] brightness-[0.98] transition-transform duration-700 hover:scale-[1.03]"
-                    loading="eager"
-                    width={1300}
-                    height={2000}
-                    onError={() => setImgError(true)}
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet="/images/portfolio/bridal-regal-portrait-480.webp 480w, /images/portfolio/bridal-regal-portrait-768.webp 768w, /images/portfolio/bridal-regal-portrait-1200.webp 1200w, /images/portfolio/bridal-regal-portrait-1600.webp 1600w"
+                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 520px"
+                    />
+                    <source
+                      type="image/jpeg"
+                      srcSet="/images/portfolio/bridal-regal-portrait-480.jpg 480w, /images/portfolio/bridal-regal-portrait-768.jpg 768w, /images/portfolio/bridal-regal-portrait-1200.jpg 1200w, /images/portfolio/bridal-regal-portrait-1600.jpg 1600w"
+                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 520px"
+                    />
+                    <img
+                      src="/images/portfolio/bridal-regal-portrait-480.webp"
+                      alt="Dimple Khinchi royal Rajasthani bridal makeup portrait showcasing emerald polki choker and bandhani dupatta"
+                      className="w-full h-full object-cover object-[center_18%] filter contrast-[1.03] brightness-[0.98] transition-transform duration-700 hover:scale-[1.03]"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
+                      width={1200}
+                      height={1845}
+                      onError={() => setImgError(true)}
+                    />
+                  </picture>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-[#1A1817] text-[#C4BCB5] text-xs">
                     Editorial Visual
@@ -114,7 +134,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121110]/80 via-transparent to-transparent pointer-events-none" />
 
                 {/* Minimalist Lower Tag */}
-                <div className="absolute bottom-5 left-5 right-5 p-4 bg-[#1A1817]/90 backdrop-blur-md border border-[#C4BCB5]/20 flex items-center justify-between text-[#F6F2EC]">
+                <div className="absolute bottom-5 left-5 right-5 p-4 bg-[#1A1817]/90 backdrop-blur-xs border border-[#C4BCB5]/20 flex items-center justify-between text-[#F6F2EC]">
                   <div>
                     <span className="text-[9px] uppercase tracking-[0.25em] text-[#C4BCB5] block font-semibold">
                       Royal Bridal Artistry

@@ -85,14 +85,22 @@ export const WhyChooseUs: React.FC = () => {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
               <div className="aspect-[3/4] overflow-hidden bg-[#1A1817] border border-[#C4BCB5]/40 shadow-xl">
-                <img
-                  src="/images/portfolio/bridal-regal-alta.webp"
-                  alt="Traditional Indian bride with red alta and polki jewelry illustrating Dimple Khinchi artistry tenets"
-                  className="w-full h-full object-cover filter contrast-[1.03]"
-                  loading="lazy"
-                  width={1406}
-                  height={2000}
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/portfolio/bridal-regal-alta-480.webp 480w, /images/portfolio/bridal-regal-alta-768.webp 768w, /images/portfolio/bridal-regal-alta-1200.webp 1200w"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 420px"
+                  />
+                  <img
+                    src="/images/portfolio/bridal-regal-alta-768.webp"
+                    alt="Traditional Indian bride with red alta and polki jewelry illustrating Dimple Khinchi artistry tenets"
+                    className="w-full h-full object-cover filter contrast-[1.03]"
+                    loading="lazy"
+                    decoding="async"
+                    width={1200}
+                    height={1707}
+                  />
+                </picture>
               </div>
 
               {/* Offset High-Contrast Quote Box */}
