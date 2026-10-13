@@ -108,7 +108,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           <a
             href="#home"
             className="group flex items-center gap-3 focus:outline-none"
-            aria-label="Dimple Khinchi — Dimple Glam Academy"
           >
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-[#C4BCB5]/30 bg-[#121110] shrink-0 p-0.5 group-hover:border-[#7A2837] transition-colors shadow-sm">
               <picture>

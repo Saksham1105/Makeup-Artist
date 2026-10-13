@@ -76,9 +76,9 @@ export const servicesData: ServiceItem[] = [
       'On-Location Durability Calibration'
     ],
     kitFocus: 'Studio Strobe & High-Definition Formulations',
-    imageUrl: '/images/portfolio/bridal-outdoor-columns-768.webp',
-    srcSetWebp: '/images/portfolio/bridal-outdoor-columns-480.webp 480w, /images/portfolio/bridal-outdoor-columns-768.webp 768w, /images/portfolio/bridal-outdoor-columns-1200.webp 1200w',
-    imageAlt: 'Outdoor destination bridal photoshoot with traditional crimson lehenga and pillars'
+    imageUrl: '/images/portfolio/bridal-outdoor-columns-front-768.webp',
+    srcSetWebp: '/images/portfolio/bridal-outdoor-columns-front-480.webp 480w, /images/portfolio/bridal-outdoor-columns-front-768.webp 768w, /images/portfolio/bridal-outdoor-columns-front-1200.webp 1200w',
+    imageAlt: 'Outdoor destination bridal photoshoot with traditional crimson lehenga and classical Roman columns'
   },
   {
     id: 'academy',

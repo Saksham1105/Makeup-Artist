@@ -92,21 +92,21 @@ export const BookingContact: React.FC<BookingContactProps> = ({ onOpenBookingWit
           {/* Left Column: Direct Info Card (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="p-8 sm:p-10 bg-[#1A1817] border border-[#C4BCB5]/20 shadow-2xl">
-              <span className="text-[10px] uppercase tracking-[0.28em] text-[#7A2837] font-semibold block mb-2">
+              <span className="text-[10px] uppercase tracking-[0.28em] text-[#E28D9D] font-semibold block mb-2">
                 Personal Consultation
               </span>
               <h3 className="font-serif text-3xl sm:text-4xl font-normal text-[#F6F2EC] mb-3">
                 {siteConfig.artistName}
               </h3>
-              <p className="text-xs text-[#C4BCB5]/75 leading-relaxed font-light mb-8">
+              <p className="text-xs text-[#C4BCB5]/85 leading-relaxed font-light mb-8">
                 Every booking is handled individually to preserve a calm, dedicated experience. Dates are subject to schedule confirmation.
               </p>
 
               <div className="space-y-5 pt-6 border-t border-[#C4BCB5]/15 text-xs">
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-[#7A2837] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#E28D9D] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-[#C4BCB5]/60 block">
+                    <span className="text-[10px] uppercase tracking-wider text-[#C4BCB5]/85 block">
                       Location &amp; Travel
                     </span>
                     <span className="text-[#F6F2EC] font-light">
@@ -116,9 +116,9 @@ export const BookingContact: React.FC<BookingContactProps> = ({ onOpenBookingWit
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 text-[#7A2837] shrink-0 mt-0.5" />
+                  <Mail className="w-4 h-4 text-[#E28D9D] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-[#C4BCB5]/60 block">
+                    <span className="text-[10px] uppercase tracking-wider text-[#C4BCB5]/85 block">
                       Inquiries (Client Placeholder)
                     </span>
                     <span className="text-[#F6F2EC] font-light">
@@ -128,9 +128,9 @@ export const BookingContact: React.FC<BookingContactProps> = ({ onOpenBookingWit
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <InstagramIcon className="w-4 h-4 text-[#7A2837] shrink-0 mt-0.5" />
+                  <InstagramIcon className="w-4 h-4 text-[#E28D9D] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-[#C4BCB5]/60 block">
+                    <span className="text-[10px] uppercase tracking-wider text-[#C4BCB5]/85 block">
                       Instagram Profile
                     </span>
                     <a
@@ -149,10 +149,10 @@ export const BookingContact: React.FC<BookingContactProps> = ({ onOpenBookingWit
             {/* Direct Instant WhatsApp Action */}
             <div className="p-6 bg-[#1A1817] border border-[#C4BCB5]/20 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <h4 className="font-serif text-lg text-[#F6F2EC]">
+                <h3 className="font-serif text-lg text-[#F6F2EC]">
                   Direct WhatsApp Chat
-                </h4>
-                <p className="text-xs text-[#C4BCB5]/60">
+                </h3>
+                <p className="text-xs text-[#C4BCB5]/85">
                   Quickest way to check schedule availability
                 </p>
               </div>
@@ -295,7 +295,7 @@ export const BookingContact: React.FC<BookingContactProps> = ({ onOpenBookingWit
                   >
                     <span>Review &amp; Preview Message &rarr;</span>
                   </button>
-                  <p className="text-[11px] text-[#C4BCB5]/60 text-center mt-3">
+                  <p className="text-[11px] text-[#C4BCB5]/85 text-center mt-3">
                     Direct enquiry compilation. Review your exact message before sending.
                   </p>
                 </div>
@@ -305,9 +305,9 @@ export const BookingContact: React.FC<BookingContactProps> = ({ onOpenBookingWit
               /* Review Mode */
               <div className="space-y-6 animate-in fade-in duration-300">
                 <div className="p-5 bg-[#121110] border border-[#C4BCB5]/30">
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-[#C4BCB5]/70 mb-2">
+                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-[#C4BCB5]/85 mb-2">
                     <span>Generated Enquiry Message</span>
-                    <span className="text-[#7A2837] font-semibold">Ready to Send</span>
+                    <span className="text-[#E28D9D] font-semibold">Ready to Send</span>
                   </div>
                   <p className="text-sm text-[#F6F2EC] font-sans leading-relaxed select-all">
                     "{buildEnquiryMessage()}"
@@ -336,14 +336,14 @@ export const BookingContact: React.FC<BookingContactProps> = ({ onOpenBookingWit
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="px-4 py-4 text-[#C4BCB5]/60 hover:text-[#C4BCB5] text-xs uppercase tracking-wider flex items-center justify-center transition-colors"
+                    className="px-4 py-4 text-[#C4BCB5]/85 hover:text-white text-xs uppercase tracking-wider flex items-center justify-center transition-colors"
                     title="Reset form"
                   >
                     <RotateCcw className="w-4 h-4" />
                   </button>
                 </div>
 
-                <p className="text-[11px] text-[#C4BCB5]/60 text-center">
+                <p className="text-[11px] text-[#C4BCB5]/85 text-center">
                   Will open the official WhatsApp application or allow direct message copy if phone details are unconfigured.
                 </p>
               </div>

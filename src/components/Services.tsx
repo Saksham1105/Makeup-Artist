@@ -27,10 +27,10 @@ export const Services: React.FC<ServicesProps> = ({ onEnquireService }) => {
           </div>
 
           <div className="mt-6 md:mt-0 max-w-md">
-            <span className="text-[10px] uppercase tracking-widest text-[#7A2837] font-semibold block mb-1">
+            <span className="text-[10px] uppercase tracking-widest text-[#E28D9D] font-semibold block mb-1">
               Confirmed &amp; Customized Services
             </span>
-            <p className="text-xs sm:text-sm text-[#C4BCB5]/75 leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-[#C4BCB5]/85 leading-relaxed font-light">
               Artistry services designed for wedding celebrations, festive gatherings, and professional education in Ajmer, Jaipur, and destination locations.
             </p>
           </div>
@@ -92,11 +92,11 @@ export const Services: React.FC<ServicesProps> = ({ onEnquireService }) => {
                 <div className={`lg:col-span-7 flex flex-col justify-between ${isEven ? 'lg:col-start-1' : ''}`}>
                   <div>
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs uppercase tracking-[0.25em] text-[#7A2837] font-semibold">
+                      <span className="text-xs uppercase tracking-[0.25em] text-[#E28D9D] font-semibold">
                         Service {service.number}
                       </span>
-                      <span className="text-[#C4BCB5]/30">•</span>
-                      <span className="text-[11px] uppercase tracking-wider text-[#C4BCB5]/60">
+                      <span className="text-[#C4BCB5]/40">•</span>
+                      <span className="text-[11px] uppercase tracking-wider text-[#C4BCB5]/85">
                         {service.category}
                       </span>
                     </div>
@@ -111,7 +111,7 @@ export const Services: React.FC<ServicesProps> = ({ onEnquireService }) => {
 
                     {/* Inclusions List */}
                     <div className="mb-6">
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#C4BCB5]/60 block mb-2 font-medium">
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#C4BCB5]/85 block mb-2 font-medium">
                         Craftsmanship &amp; Inclusions:
                       </span>
                       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#F6F2EC]/80">
@@ -142,7 +142,7 @@ export const Services: React.FC<ServicesProps> = ({ onEnquireService }) => {
                       <ArrowUpRight className="w-3.5 h-3.5 text-white/80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </button>
 
-                    <span className="text-[11px] text-[#C4BCB5]/50 uppercase tracking-widest hidden sm:inline">
+                    <span className="text-[11px] text-[#C4BCB5]/85 uppercase tracking-widest hidden sm:inline">
                       Ajmer • Jaipur • Travel
                     </span>
                   </div>
@@ -156,7 +156,7 @@ export const Services: React.FC<ServicesProps> = ({ onEnquireService }) => {
         {/* Custom Itinerary Banner */}
         <div className="mt-20 p-8 sm:p-12 bg-[#1A1817] border border-[#C4BCB5]/20 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-[#7A2837] font-semibold block mb-1">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-[#E28D9D] font-semibold block mb-1">
               Custom Itineraries
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl text-[#F6F2EC]">

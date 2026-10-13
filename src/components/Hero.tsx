@@ -143,7 +143,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                       Regal Grace &amp; Timeless Radiance
                     </span>
                   </div>
-                  <span className="text-[9px] uppercase tracking-widest text-[#7A2837] font-semibold px-2.5 py-0.5 bg-[#121110] border border-[#7A2837]/30">
+                  <span className="text-[9px] uppercase tracking-widest text-[#E28D9D] font-semibold px-2.5 py-0.5 bg-[#121110] border border-[#E28D9D]/30">
                     Signature Look
                   </span>
                 </div>
@@ -158,13 +158,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
         <div className="hidden md:flex justify-center mt-16">
           <a
             href="#about"
-            aria-label="Scroll to About Section"
-            className="flex flex-col items-center text-[#C4BCB5]/50 hover:text-[#F6F2EC] transition-colors group"
+            className="flex flex-col items-center text-[#C4BCB5]/85 hover:text-[#F6F2EC] transition-colors group"
           >
             <span className="text-[9px] uppercase tracking-[0.35em] mb-2 group-hover:translate-y-0.5 transition-transform">
               Scroll To Discover
             </span>
-            <ArrowDown className="w-3.5 h-3.5 text-[#7A2837] animate-bounce" />
+            <ArrowDown className="w-3.5 h-3.5 text-[#E28D9D] animate-bounce" />
           </a>
         </div>
 

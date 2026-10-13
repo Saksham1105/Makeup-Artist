@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense, useCallback } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -30,38 +30,38 @@ export function App() {
   // Lightbox state
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Handlers for WhatsApp enquiry
-  const handleOpenGeneralBooking = () => {
+  // Handlers for WhatsApp enquiry (memoized to prevent child re-renders)
+  const handleOpenGeneralBooking = useCallback(() => {
     setActiveServiceTitle(undefined);
     setCustomMessage(siteConfig.getDefaultEnquiryMessage());
     setWhatsAppModalOpen(true);
-  };
+  }, []);
 
-  const handleEnquireService = (service: ServiceItem) => {
+  const handleEnquireService = useCallback((service: ServiceItem) => {
     const message = siteConfig.getDefaultEnquiryMessage(service.title);
     setActiveServiceTitle(service.title);
     setCustomMessage(message);
     setWhatsAppModalOpen(true);
-  };
+  }, []);
 
-  const handleOpenWithMessage = (message: string) => {
+  const handleOpenWithMessage = useCallback((message: string) => {
     setActiveServiceTitle(undefined);
     setCustomMessage(message);
     setWhatsAppModalOpen(true);
-  };
+  }, []);
 
-  // Handlers for Lightbox
-  const handleOpenLightbox = (_item: PortfolioItem, index: number) => {
+  // Handlers for Lightbox (memoized)
+  const handleOpenLightbox = useCallback((_item: PortfolioItem, index: number) => {
     setLightboxIndex(index);
-  };
+  }, []);
 
-  const handleCloseLightbox = () => {
+  const handleCloseLightbox = useCallback(() => {
     setLightboxIndex(null);
-  };
+  }, []);
 
-  const handleNavigateLightbox = (newIndex: number) => {
+  const handleNavigateLightbox = useCallback((newIndex: number) => {
     setLightboxIndex(newIndex);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#121110] text-[#F6F2EC] flex flex-col font-sans selection:bg-[#7A2837] selection:text-white">

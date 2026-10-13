@@ -49,7 +49,7 @@ export const WhyChooseUs: React.FC = () => {
               <span className="italic font-light text-[#7A2837]">My Artistry.</span>
             </h2>
 
-            <p className="text-[10px] uppercase tracking-[0.25em] text-[#121110]/60 font-semibold mb-12">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-[#121110]/85 font-semibold mb-12">
               Authentic Artistry Approach • Dimple Khinchi, Ajmer &amp; Jaipur
             </p>
 

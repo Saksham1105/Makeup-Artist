@@ -116,13 +116,13 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 py-6 border-y border-[#C4BCB5]/15 mb-8">
               {/* Credential 1: Mahima Bajaj Academy Award */}
               <div className="p-4 bg-[#121110]/60 border border-[#C4BCB5]/10">
-                <div className="flex items-center gap-2 text-[#7A2837] mb-2">
+                <div className="flex items-center gap-2 text-[#E28D9D] mb-2">
                   <Award className="w-4 h-4" />
-                  <h4 className="text-xs uppercase tracking-[0.2em] font-medium text-[#F6F2EC]">
+                  <h3 className="text-xs uppercase tracking-[0.2em] font-medium text-[#F6F2EC]">
                     Formal Training Recognition
-                  </h4>
+                  </h3>
                 </div>
-                <p className="text-xs text-[#C4BCB5]/75 leading-relaxed font-light">
+                <p className="text-xs text-[#C4BCB5]/85 leading-relaxed font-light">
                   Recognized as <strong className="text-[#F6F2EC] font-normal">“Shining Star of Mahima Bajaj Academy”</strong>, grounded in intensive hands-on academy training and bridal techniques.
                 </p>
               </div>
@@ -143,13 +143,13 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                   </picture>
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 text-[#7A2837] mb-1">
+                  <div className="flex items-center gap-2 text-[#E28D9D] mb-1">
                     <Sparkles className="w-3.5 h-3.5" />
-                    <h4 className="text-xs uppercase tracking-[0.2em] font-medium text-[#F6F2EC]">
+                    <h3 className="text-xs uppercase tracking-[0.2em] font-medium text-[#F6F2EC]">
                       Dimple Glam Academy
-                    </h4>
+                    </h3>
                   </div>
-                  <p className="text-xs text-[#C4BCB5]/75 leading-relaxed font-light">
+                  <p className="text-xs text-[#C4BCB5]/85 leading-relaxed font-light">
                     Educational brand founded on the philosophy to <strong className="text-[#F6F2EC] font-normal">Learn, Create, and Grow</strong>.
                   </p>
                 </div>

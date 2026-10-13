@@ -60,7 +60,7 @@ export const MobileBookingBar: React.FC<MobileBookingBarProps> = ({ onOpenBookin
     >
       <div className="flex items-center justify-between gap-3 max-w-sm mx-auto">
         <div className="min-w-0 flex-1">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-[#7A2837] font-semibold block truncate">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-[#E28D9D] font-semibold block truncate">
             {siteConfig.artistName}
           </span>
           <span className="text-xs font-serif text-[#F6F2EC] truncate block">

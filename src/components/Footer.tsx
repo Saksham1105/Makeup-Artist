@@ -43,17 +43,17 @@ export const Footer: React.FC = () => {
                 </span>
               </div>
             </div>
-            <p className="text-[11px] uppercase tracking-[0.28em] text-[#7A2837] font-semibold">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[#E28D9D] font-semibold">
               Makeup Artist &amp; Beauty Creator
             </p>
-            <p className="max-w-md text-xs sm:text-sm text-[#C4BCB5]/75 leading-relaxed font-light">
+            <p className="max-w-md text-xs sm:text-sm text-[#C4BCB5]/85 leading-relaxed font-light">
               Elevating authentic individual grace across wedding ceremonies, festive milestones, brand campaigns, and beauty education in Ajmer, Jaipur, and destination locations.
             </p>
           </div>
 
           {/* Quick Navigation (3 cols) */}
           <div className="md:col-span-3 space-y-3">
-            <span className="text-[10px] uppercase tracking-[0.25em] text-[#C4BCB5]/60 font-semibold block">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-[#C4BCB5]/85 font-semibold block">
               Navigation
             </span>
             <ul className="space-y-2.5 text-xs text-[#C4BCB5]/85 font-light">
@@ -80,7 +80,7 @@ export const Footer: React.FC = () => {
 
           {/* Connect & Social (3 cols) */}
           <div className="md:col-span-3 space-y-4">
-            <span className="text-[10px] uppercase tracking-[0.25em] text-[#C4BCB5]/60 font-semibold block">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-[#C4BCB5]/85 font-semibold block">
               Connect With Dimple
             </span>
             
@@ -89,9 +89,9 @@ export const Footer: React.FC = () => {
                 href={siteConfig.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs text-[#F6F2EC] hover:text-[#7A2837] transition-colors group"
+                className="flex items-center gap-2 text-xs text-[#F6F2EC] hover:text-[#E28D9D] transition-colors group"
               >
-                <InstagramIcon className="w-4 h-4 text-[#7A2837]" />
+                <InstagramIcon className="w-4 h-4 text-[#E28D9D]" />
                 <span>{siteConfig.instagramHandle}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
               </a>
@@ -100,15 +100,15 @@ export const Footer: React.FC = () => {
                 href={siteConfig.youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs text-[#F6F2EC] hover:text-[#7A2837] transition-colors group"
+                className="flex items-center gap-2 text-xs text-[#F6F2EC] hover:text-[#E28D9D] transition-colors group"
               >
-                <YouTubeIcon className="w-4 h-4 text-[#7A2837]" />
+                <YouTubeIcon className="w-4 h-4 text-[#E28D9D]" />
                 <span>{siteConfig.youtubeHandle}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
               </a>
             </div>
 
-            <p className="text-xs text-[#C4BCB5]/70 font-light pt-1">
+            <p className="text-xs text-[#C4BCB5]/85 font-light pt-1">
               {siteConfig.locationPlaceholder}
             </p>
 
@@ -119,7 +119,7 @@ export const Footer: React.FC = () => {
                 aria-label="Back to top"
               >
                 <span>Back to top</span>
-                <ArrowUp className="w-3.5 h-3.5 text-[#7A2837]" />
+                <ArrowUp className="w-3.5 h-3.5 text-[#E28D9D]" />
               </button>
             </div>
           </div>
@@ -127,18 +127,18 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar: Copyright & MAZRIK Credit */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#C4BCB5]/50 tracking-wider gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#C4BCB5]/80 tracking-wider gap-4">
           <div>
             &copy; {CURRENT_YEAR} {siteConfig.artistName}. All rights reserved.
           </div>
 
-          <div className="flex items-center gap-1.5 text-[#C4BCB5]/60">
+          <div className="flex items-center gap-1.5 text-[#C4BCB5]/85">
             <span>Crafted with distinction by</span>
             <a
               href={siteConfig.agencyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#F6F2EC] hover:text-[#7A2837] font-medium hover:underline inline-flex items-center gap-1 transition-colors"
+              className="text-[#F6F2EC] hover:text-[#E28D9D] font-medium hover:underline inline-flex items-center gap-1 transition-colors"
             >
               <span>{siteConfig.agencyName}</span>
               <ExternalLink className="w-2.5 h-2.5" />
